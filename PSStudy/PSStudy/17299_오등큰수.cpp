@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 #include <unordered_map>
 #include <stack>
 #include <iostream>
 #include <vector>
 #include <algorithm>
 
+=======
+#include <map>
+#include <iostream>
+#include <vector>
+>>>>>>> c1e390be1a390c0ed2b303fa701f3c3e83909262
 using namespace std;
 
 int main()
 {
+<<<<<<< HEAD
 	stack<int> s;
 
 	int N;
@@ -49,6 +56,17 @@ int main()
 		cout << result[i] << " ";
 	}
 	cout << result[N - 1];
+=======
+	int N;
+	cin >> N;
+	vector<int> a(N);
+	
+
+	for (int i = 0; i < N; ++i)
+		cin >> a[i];
+
+
+>>>>>>> c1e390be1a390c0ed2b303fa701f3c3e83909262
 
 	return 0;
 }
