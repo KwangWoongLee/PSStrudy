@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <queue>
+
 
 template <typename T>
 class Node {
@@ -10,6 +12,8 @@ public:
 	T	mData;
 	Node<T>* mLeftChild;
 	Node<T>* mRightChild;
+	Node<T>* mParent;
+	int mDepth;
 };
 
 
@@ -19,6 +23,7 @@ inline Node<T>::Node(T data)
 	mData = data;
 	mLeftChild = nullptr;
 	mRightChild = nullptr;
+	mParent = nullptr;
 }
 
 template<typename T>
@@ -47,11 +52,13 @@ public:
 	T PopLeftChild(Node<T>* parentNode);
 	T PopRightChild(Node<T>* parentNode);
 
-	Node<T>* FindNodeToValue(Node<T>* node, T& key);
+	Node<T>* FindNodeToValue(T& key);
 
 	void PrintPreOrder(Node<T>* node);
 	void PrintInOrder(Node<T>* node);
 	void PrintPostOrder(Node<T>* node);
+
+	void InOrderToMakeLocation(Node<T>* node, std::vector<Node<T>*>& location);
 
 private:
 	Node<T>*	mRoot;
@@ -62,6 +69,7 @@ template<typename T>
 inline Tree<T>::Tree(T data)
 {
 	mRoot = new Node<T>(data);
+	mRoot->mDepth = 1;
 }
 
 template<typename T>
@@ -75,6 +83,9 @@ inline void Tree<T>::PushLeftChild(Node<T>* parentNode ,T& data)
 {
 	auto newNode = new Node<T>(data);
 	parentNode->mLeftChild = newNode;
+	newNode->mParent = parentNode;
+
+	newNode->mDepth = parentNode->mDepth + 1;
 
 	//검증 코드는 따로 작성X
 }
@@ -84,6 +95,9 @@ inline void Tree<T>::PushRightChild(Node<T>* parentNode, T& data)
 {
 	auto newNode = new Node<T>(data);
 	parentNode->mRightChild = newNode;
+	newNode->mParent = parentNode;
+
+	newNode->mDepth = parentNode->mDepth + 1;
 
 	//검증 코드는 따로 작성X
 
@@ -110,16 +124,28 @@ inline T Tree<T>::PopRightChild(Node<T>* parentNode)
 }
 
 template<typename T>
-inline Node<T>* Tree<T>::FindNodeToValue(Node<T>* node, T& key)
+inline Node<T>* Tree<T>::FindNodeToValue(T& key)
 {
-	if (node == nullptr)
-		return nullptr;
+	std::queue<Node<T>*> q;
+	q.push(mRoot);
 
-	if (node->mData == key)
-		return node;
+	while (!q.empty())
+	{
+		auto tmp = q.front();
+		q.pop();
+		
+		if (tmp->mData == key)
+			return tmp;
 
-	FindNodeToValue(node->mLeftChild, key);
-	FindNodeToValue(node->mRightChild, key);
+		if (tmp->mLeftChild != nullptr)
+			q.push(tmp->mLeftChild);
+
+		if (tmp->mRightChild != nullptr)
+			q.push(tmp->mRightChild);
+
+	}
+
+	return nullptr;
 }
 
 template<typename T>
@@ -136,9 +162,32 @@ inline void Tree<T>::PrintPreOrder(Node<T>* node)
 template<typename T>
 inline void Tree<T>::PrintInOrder(Node<T>* node)
 {
+	if (node == nullptr)
+		return;
+
+	PrintInOrder(node->mLeftChild);
+	std::cout << node->mData;
+	PrintInOrder(node->mRightChild);
 }
 
 template<typename T>
 inline void Tree<T>::PrintPostOrder(Node<T>* node)
 {
+	if (node == nullptr)
+		return;
+
+	PrintPostOrder(node->mLeftChild);
+	PrintPostOrder(node->mRightChild);
+	std::cout << node->mData;
+}
+
+template<typename T>
+inline void Tree<T>::InOrderToMakeLocation(Node<T>* node, std::vector<Node<T>*>& location)
+{
+	if (node == nullptr)
+		return;
+
+	InOrderToMakeLocation(node->mLeftChild, location);
+	location.push_back(node);
+	InOrderToMakeLocation(node->mRightChild, location);
 }

@@ -17,16 +17,25 @@ int main() {
 	{
 		cin >> node >> left >> right;
 		
-		auto parent = t.FindNodeToValue(t.GetRoot(), node);
+		auto parent = t.FindNodeToValue(node);
 		
-		if (left != '.')
-			t.PushLeftChild(parent, left);
+		if (parent != nullptr)
+		{
+			if (left != '.')
+				t.PushLeftChild(parent, left);
 
-		if (right != '.')
-			t.PushRightChild(parent, right);
-
+			if (right != '.')
+				t.PushRightChild(parent, right);
+		}
 	}
-	
+
+	t.PrintPreOrder(t.GetRoot());
+	cout << endl;
+
+	t.PrintInOrder(t.GetRoot());
+	cout << endl;
+
+	t.PrintPostOrder(t.GetRoot());
 
 	return 0;
 }
