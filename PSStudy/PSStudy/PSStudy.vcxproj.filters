@@ -44,9 +44,6 @@
     <ClCompile Include="17298_오큰수.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="17299_오등큰수.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="1935_후위표기식.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -60,6 +57,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="11726_2xN타일링.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="13023_ABCDE.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
