@@ -44,9 +44,6 @@
     <ClCompile Include="17298_오큰수.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="17299_오등큰수.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="1935_후위표기식.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -62,6 +59,7 @@
     <ClCompile Include="11726_2xN타일링.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="1991_트리순회.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -106,5 +104,10 @@
     <ClInclude Include="Tree.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+=======
+    <ClCompile Include="13023_ABCDE.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+>>>>>>> faccfef1465ddb6309fad6cb75ed1ae5f4c0c310
   </ItemGroup>
 </Project>

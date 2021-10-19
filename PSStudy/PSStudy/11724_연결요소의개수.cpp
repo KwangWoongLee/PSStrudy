@@ -7,7 +7,7 @@ vector<vector<int>> nodeList;
 vector<bool> visit;
 int N, M;
 
-void DFS(int node) 
+void DFS(int node)
 {
 	if (visit[node])
 		return;
@@ -25,8 +25,8 @@ int main()
 {
 	cin >> N >> M;
 
-	nodeList = vector<vector<int>>(N+1);
-	visit = vector<bool>(N+1, false);
+	nodeList = vector<vector<int>>(N + 1);
+	visit = vector<bool>(N + 1, false);
 	int result = 0;
 
 	if (M == 0)
@@ -43,7 +43,7 @@ int main()
 		nodeList[node2].push_back(node);
 	}
 
-	for (int i = 1; i < N+1; ++i)
+	for (int i = 1; i < N + 1; ++i)
 	{
 		if (!visit[i])
 		{
